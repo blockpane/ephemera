@@ -10,11 +10,11 @@ import (
 
 var (
 	Region = `us-east-1`
-	AwsSession  = session.Must(session.NewSession(&aws.Config{Region: aws.String(Region)}))
-	KMS = kms.New(AwsSession)
-	AwsAccount  = `820149708544`
+	AwsSession *session.Session
+	KMS *kms.KMS
+	AwsAccount  string
 	KmsKeyId    string
-	Application = `sharedpw`
+	Application string
 )
 
 // Headers are added to all outgoing responses from lambda
@@ -31,18 +31,23 @@ var Headers = map[string]string{
 func init() {
 	log.SetFlags(log.Lshortfile|log.LstdFlags|log.LUTC)
 
-	switch os.Getenv("CORS") {
-	case "":
+	switch "" {
+	case os.Getenv("CORS"):
 		log.Fatal("Need CORS env var for access-control-allow-origin header")
-	default:
-		Headers["Access-Control-Allow-Origin"] = os.Getenv("CORS")
+	case os.Getenv("REGION"):
+		log.Fatal("Need REGION env var")
+	case os.Getenv("ACCOUNT"):
+		log.Fatal("Need ACCOUNT env var")
+	case os.Getenv("KMS"):
+		log.Fatal("Need KMS env var")
+	case os.Getenv("APPLICATION"):
+		log.Fatal("Need APPLICATION env var")
 	}
 
-	switch os.Getenv("KMS") {
-	case "":
-		log.Fatal("need KMS key to use, set the KMS env var.")
-	default:
-		KmsKeyId = os.Getenv("KMS")
-	}
+	Headers["Access-Control-Allow-Origin"] = os.Getenv("CORS")
+	KmsKeyId = os.Getenv("KMS")
+	AwsAccount = os.Getenv("ACCOUNT")
+	AwsSession = session.Must(session.NewSession(&aws.Config{Region: aws.String(Region)}))
+	KMS = kms.New(AwsSession)
 }
 

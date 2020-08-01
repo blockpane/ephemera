@@ -54,5 +54,4 @@ given the nature of what's going on here. Note also that CORS headers need to be
 
 *It's been a long time since I ran the ansible playbook, so it's possible that it's not compatible with the latest version.*
 
-Note: in `./ansible/group_vars/all.yml` the `kms_key_id` needs to be set, or commented out if using env vars or a `~/.aws/config` for authentication.
-the `all.yml` has several other variables that will need to be set.
+Move the `./ansible/group_vars/example-all.yml` to `./ansible/group_vars/all.yml` and edit to suit

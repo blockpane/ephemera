@@ -1,7 +1,6 @@
 LDFLAGS = -s -w
 REGION = us-east-1
-# NAME = ephemera
-NAME = sharedpw
+NAME = ephemera
 
 all:
 	make save view

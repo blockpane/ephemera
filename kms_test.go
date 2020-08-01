@@ -61,5 +61,3 @@ func TestEncryptSecret(t *testing.T) {
 	fmt.Println("revealed:        ", string(result))
 
 }
-
-

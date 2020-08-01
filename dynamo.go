@@ -21,8 +21,8 @@ import (
 //	Expire is a unixtime value, for the Dynamo TTL
 type Secret struct {
 	Secret  string `json:"secret"`
-	Expire  int64  `json:"expire"`   // calculated by server, dynamo db removal timestamp in unixtime
-	Hours   int    `json:"hours"`    // sent by client, should be < 72
+	Expire  int64  `json:"expire"` // calculated by server, dynamo db removal timestamp in unixtime
+	Hours   int    `json:"hours"`  // sent by client, should be < 72
 	Message string `json:"message"`
 	Ip      string `json:"ip"`
 	HasPass bool   `json:"has_pass"`
@@ -33,7 +33,6 @@ type Secret struct {
 	PwTag   string `json:"pw_tag"`
 	PwIv    string `json:"pw_iv"`
 }
-
 
 // NewSecret initializes a Secret -- not sure this is useful outside of tests.
 func NewSecret() *Secret {
@@ -102,15 +101,15 @@ func (s *Secret) Save(b64EncSecret string) error {
 }
 
 // Revealed holds the response from a secret lookup
-type Revealed struct { 
-	Secret string
-	Exists bool
+type Revealed struct {
+	Secret  string
+	Exists  bool
 	HasPass bool
-	Hint string
-	Tag string
-	Iv string
-	PwTag string
-	PwIv string
+	Hint    string
+	Tag     string
+	Iv      string
+	PwTag   string
+	PwIv    string
 }
 
 // Reveal returns a base64 encoded string of the secret stored in the db, and immediately deletes it.
@@ -210,11 +209,11 @@ func Reveal(id string, ip net.IP, reveal bool) (revealed Revealed, err error) {
 // "sharedpw" and "us-east-1" respectively.
 func newClient() (table string, db *dynamodb.DynamoDB, err error) {
 	return func() string {
-		if t, ok := os.LookupEnv("APPLICATION"); ok {
-			return t
-		}
-		return "sharedpw"
-	}(),
+			if t, ok := os.LookupEnv("APPLICATION"); ok {
+				return t
+			}
+			return "sharedpw"
+		}(),
 		func() *dynamodb.DynamoDB {
 			region, ok := os.LookupEnv("REGION")
 			if !ok {

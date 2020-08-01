@@ -99,8 +99,8 @@ func handleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (
 		Hint:    secret.Hint,
 		Tag:     secret.Tag,
 		Iv:      secret.Iv,
-		PwTag:     secret.PwTag,
-		PwIv:      secret.PwIv,
+		PwTag:   secret.PwTag,
+		PwIv:    secret.PwIv,
 	}.String()
 	return
 }

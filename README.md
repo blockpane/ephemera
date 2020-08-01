@@ -4,6 +4,8 @@ This is an application for sharing a secret, the secret can only be accessed onc
 
 [Check it out](https://ephemera.link/#/)
 
+![screen shot](doc/ephemera.png)
+
 ## Basic Usage:
 Type in the secret you want to share, and click "Get Link", provide this to the recipient and they can retrieve it.
 

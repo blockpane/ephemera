@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	Region = `us-east-1`
+	Region string
 	AwsSession *session.Session
 	KMS *kms.KMS
 	AwsAccount  string
@@ -45,6 +45,7 @@ func init() {
 	}
 
 	Headers["Access-Control-Allow-Origin"] = os.Getenv("CORS")
+	Region = os.Getenv("REGION")
 	KmsKeyId = os.Getenv("KMS")
 	AwsAccount = os.Getenv("ACCOUNT")
 	AwsSession = session.Must(session.NewSession(&aws.Config{Region: aws.String(Region)}))

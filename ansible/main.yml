@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  gather_facts: False
+  connection: local
+  roles:
+    - dynamo
+    - api
+

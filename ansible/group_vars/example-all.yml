@@ -1,0 +1,16 @@
+---
+
+# copy this file to all.yml and edit to suit.
+
+account: 000000000000           # your aws account number
+region: "us-east-1"
+kms_key_id: "CHANGEME"          # the KMS key that is used by lambda to encrypt
+application: ephemera           # controls naming of lambda functions and dynamo tables
+cors: "https://change-me.local" # Sets the access-control-allow-origin header for api via env var
+
+lambda_ro:
+  - ro
+lambda_rw:
+  - rw
+
+

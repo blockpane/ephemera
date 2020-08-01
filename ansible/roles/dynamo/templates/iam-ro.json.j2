@@ -1,0 +1,52 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Decrypt",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt",
+        "kms:GetKeyPolicy",
+        "kms:DescribeKey"
+      ],
+      "Resource": "arn:aws:kms:{{ region }}:{{ account }}:key/{{ kms_key_id }}"
+    },
+    {
+      "Sid": "ReadAnddelete",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:Query"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:{{ region }}:{{ account }}:table/{{ application }}"
+      ]
+    },
+    {
+      "Sid": "ListTable",
+      "Effect": "Allow",
+      "Action": "dynamodb:ListTables",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "logs:CreateLogGroup",
+      "Resource": "arn:aws:logs:{{ region }}:*:*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        {% for item in lambda_rw|list + lambda_ro|list %}
+        "arn:aws:logs:{{ region }}:*:log-group:/aws/lambda/{{ application}}-{{ item }}:*",
+        {% endfor %}
+        "arn:aws:logs:{{ region }}:*:log-group:/aws/lambda/{{ application }}:*"
+      ]
+    }
+  ]
+}

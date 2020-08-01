@@ -1,0 +1,19 @@
+---
+
+- name: lambda functions with write access
+  lambda:
+    name: '{{ application }}-{{ item }}'
+    region: "{{ region }}"
+    zip_file: "../deploy/lambda/{{ item }}.zip"
+    timeout: 10
+    state: present
+    runtime: 'go1.x'
+    role: '{{ application }}-dynamo-{{ item }}'
+    handler: 'main'
+    environment_variables:
+      CORS: {{ cors }}
+      KMS: {{ kms_key_id }}
+  loop:
+    - ro
+    - rw
+

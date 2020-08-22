@@ -48,6 +48,7 @@ func init() {
 	Region = os.Getenv("REGION")
 	KmsKeyId = os.Getenv("KMS")
 	AwsAccount = os.Getenv("ACCOUNT")
+	Application = os.Getenv("APPLICATION")
 	AwsSession = session.Must(session.NewSession(&aws.Config{Region: aws.String(Region)}))
 	KMS = kms.New(AwsSession)
 }

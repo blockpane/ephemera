@@ -48,10 +48,5 @@ Most recently built using Go 1.14 and Node 14.7.0
 
 ## Infrastructure
 
-Sadly this part is incomplete, the provided ansible handles building the dynamo tables and creating the lambda functions.
-It does not take care of API gateway, S3, or Cloudfront. Pull requests happily accepted, would prefer terraform, over ansible
-given the nature of what's going on here. Note also that CORS headers need to be setup for the app to work.
-
-*It's been a long time since I ran the ansible playbook, so it's possible that it's not compatible with the latest version.*
-
-Move the `./ansible/group_vars/example-all.yml` to `./ansible/group_vars/all.yml` and edit to suit
+A huge thanks to fmalykh for contributing the terraform components that will deploy this. The ansible plays have been removed,
+but are easy to find at the commit tagged `ansible-removed`.

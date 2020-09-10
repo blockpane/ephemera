@@ -38,7 +38,7 @@
             in a chat window. But,
             there is no provable way to know what is being done behind the scenes, and the only way to be entirely sure
             is to get the source from
-            <a href="https://github.com/frameloss/ephemera">Github</a>, audit the code, and deploy it under your own
+            <a href="https://github.com/blockpane/ephemera">Github</a>, audit the code, and deploy it under your own
             control.
             </p>
             <p class="my-4">
@@ -78,7 +78,7 @@
             <ul><img src="./assets/chevron-right.svg" width="24">The ability to have an additional layer of encryption is nice.
                 Not shared via a link, and unknown to the backend ... adds a distinct and important layer of security</ul>
             <div class="footer-copyright text-sm-center py-3">© 2020 Copyright:
-                <a href="https://github.com/frameloss/ephemera/">Todd Garrison</a>
+                <a href="https://github.com/blockpane/ephemera/">Todd Garrison</a>
             </div>
         </b-modal>
         <router-view></router-view>

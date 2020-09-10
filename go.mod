@@ -1,4 +1,4 @@
-module github.com/frameloss/ephemera
+module github.com/blockpane/ephemera
 
 go 1.14
 

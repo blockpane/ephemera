@@ -1,8 +1,8 @@
 {
   "name": "ephemera",
   "description": "Secret Sharing",
-  "version": "1.0.0",
-  "author": "Todd Garrison <tag@frameloss.org>",
+  "version": "1.0.1",
+  "author": "Todd Garrison <todd@blockpane.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
